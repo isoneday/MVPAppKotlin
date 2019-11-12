@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/edtnama"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="nama" />
+
+            <EditText
+                android:id="@+id/edtalamat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="alamat" />
+
+            <EditText
+                android:id="@+id/edtnotelp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="no telp"
+                android:inputType="number"
+                android:maxLength="15" />
+  <EditText
+                android:id="@+id/edtusia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="usia"
+
+                android:inputType="number"
+                android:maxLength="2" />
+
+            <Spinner
+                android:id="@+id/spinjenkel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dropdown" />
+
+            <EditText
+                android:id="@+id/edtusername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="username" />
+
+
+                <EditText
+                    android:id="@+id/edtpassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/fragment_login_password_hint"
+                    android:inputType="textPassword" />
+
+                <EditText
+                    android:id="@+id/edtpasswordconfirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/fragment_login_passfiword_hintcon"
+                    android:inputType="textPassword"/>
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="11dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/regAdmin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="Admin" />
+
+                <RadioButton
+                    android:id="@+id/regUserbiasa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="false"
+                    android:text="user biasa" />
+            </RadioGroup>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>
