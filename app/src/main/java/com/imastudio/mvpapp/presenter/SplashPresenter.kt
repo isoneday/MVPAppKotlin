@@ -5,7 +5,7 @@ import com.airbnb.lottie.LottieAnimationView
 import com.imastudio.customerapp.helper.SessionManager
 import com.imastudio.mvpapp.MainActivity
 import com.imastudio.mvpapp.base.BasePresenter
-import com.imastudio.mvpapp.view.AuthActivity
+import com.imastudio.mvpapp.view.activity.AuthActivity
 
 
 class SplashPresenter(var splashView: SplashContract.View? = null) :
@@ -24,7 +24,7 @@ class SplashPresenter(var splashView: SplashContract.View? = null) :
         lottie1: LottieAnimationView,
         session: SessionManager
     ) {
-        lottie1.setAnimation("lottiefiles/motorcycle.json")
+        lottie1.setAnimation("motorcycle.json")
         lottie1.loop(true)
 
         lottie1.playAnimation()

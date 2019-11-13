@@ -1,7 +1,7 @@
 package com.imastudio.mvpapp.presenter
 
 import com.imastudio.mvpapp.base.BasePresenter
-import com.imastudio.mvpapp.model.ResponseAuth
+import com.imastudio.mvpapp.model.modelauth.ResponseAuth
 import com.imastudio.mvpapp.network.InitRetrofit
 import retrofit2.Call
 import retrofit2.Callback

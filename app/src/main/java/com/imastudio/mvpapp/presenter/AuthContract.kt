@@ -1,7 +1,7 @@
 package com.imastudio.mvpapp.presenter
 
 import com.imastudio.mvpapp.base.BaseView
-import com.imastudio.mvpapp.model.User
+import com.imastudio.mvpapp.model.modelauth.User
 
 interface AuthContract {
     interface Presenter{

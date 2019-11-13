@@ -1,4 +1,4 @@
-package com.imastudio.mvpapp.model
+package com.imastudio.mvpapp.model.modelauth
 
 import com.google.gson.annotations.SerializedName
 

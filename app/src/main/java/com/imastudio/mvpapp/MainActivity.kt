@@ -12,8 +12,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.imastudio.customerapp.helper.SessionManager
-import com.imastudio.mvpapp.view.AuthActivity
+import com.imastudio.mvpapp.view.activity.AuthActivity
+import com.imastudio.mvpapp.view.fragment.WisataFragment
+import org.jetbrains.anko.alert
+import org.jetbrains.anko.noButton
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.yesButton
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -26,6 +30,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.container, WisataFragment()).commit()
 
         val fab: FloatingActionButton = findViewById(R.id.fab)
         fab.setOnClickListener { view ->
@@ -48,7 +54,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
         } else {
-            super.onBackPressed()
+            alert("Keluar Aplikasi !",
+                "Apakah anda yakin keluar?") {
+                yesButton { System.exit(0) }
+                noButton {}
+            }.show()
         }
     }
 
@@ -78,6 +88,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when (item.itemId) {
             R.id.nav_home -> {
                 // Handle the camera action
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.container, WisataFragment()).commit()
+
             }
             R.id.nav_gallery -> {
 

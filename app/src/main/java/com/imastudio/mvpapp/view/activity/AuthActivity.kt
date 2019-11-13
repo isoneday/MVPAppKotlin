@@ -1,4 +1,4 @@
-package com.imastudio.mvpapp.view
+package com.imastudio.mvpapp.view.activity
 
 import android.app.ProgressDialog
 import android.os.Bundle
@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.imastudio.customerapp.helper.SessionManager
 import com.imastudio.mvpapp.MainActivity
 import com.imastudio.mvpapp.R
-import com.imastudio.mvpapp.model.User
+import com.imastudio.mvpapp.model.modelauth.User
 import com.imastudio.mvpapp.presenter.AuthContract
 import com.imastudio.mvpapp.presenter.AuthPresenter
 import kotlinx.android.synthetic.main.activity_auth.*
@@ -19,9 +19,8 @@ import kotlinx.android.synthetic.main.layout_login.view.*
 import kotlinx.android.synthetic.main.layout_register.view.*
 import kotlinx.android.synthetic.main.layout_register.view.regAdmin
 import kotlinx.android.synthetic.main.layout_register.view.regUserbiasa
+import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
-import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.toast
 
 
 class AuthActivity : AppCompatActivity() ,AuthContract.View, AdapterView.OnItemSelectedListener {
@@ -170,6 +169,15 @@ class AuthActivity : AppCompatActivity() ,AuthContract.View, AdapterView.OnItemS
         session.createLoginSession(dataLogin?.username)
         session.iduser= dataLogin?.idUser.toString()
         startActivity<MainActivity>()
+        finish()
+    }
+
+    override fun onBackPressed() {
+        alert("Keluar Aplikasi !",
+            "Apakah anda yakin keluar?") {
+            yesButton { System.exit(0) }
+            noButton {}
+        }.show()
     }
 
     override fun showMsg(msg: String?) {

@@ -65,7 +65,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/fragment_login_password_hint"
-                    android:inputType="textPassword" />
+                    android:inputType="numberPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -79,7 +79,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/fragment_login_passfiword_hintcon"
-                    android:inputType="textPassword"/>
+                    android:inputType="numberPassword"/>
             </com.google.android.material.textfield.TextInputLayout>
             <RadioGroup
                 android:layout_width="match_parent"

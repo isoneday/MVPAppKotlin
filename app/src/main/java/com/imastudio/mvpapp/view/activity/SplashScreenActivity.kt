@@ -1,4 +1,4 @@
-package com.imastudio.mvpapp.view
+package com.imastudio.mvpapp.view.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -30,6 +30,7 @@ class SplashScreenActivity : AppCompatActivity(), SplashContract.View {
 
     override fun pindahHalaman(java1: Class<*>) {
         startActivity(Intent(this, java1))
+        finish()
     }
 
     override fun welcomeMsg() {

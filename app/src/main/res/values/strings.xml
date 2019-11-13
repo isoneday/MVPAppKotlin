@@ -20,4 +20,7 @@
     </string-array>
     <string name="fragment_login_password_hint">inputkan password anda</string>
     <string name="fragment_login_passfiword_hintcon">inputkan confirm password anda</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
