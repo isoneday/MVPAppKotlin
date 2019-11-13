@@ -8,8 +8,10 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.imastudio.customerapp.helper.SessionManager
 import com.imastudio.mvpapp.MainActivity
 import com.imastudio.mvpapp.R
+import com.imastudio.mvpapp.model.User
 import com.imastudio.mvpapp.presenter.AuthContract
 import com.imastudio.mvpapp.presenter.AuthPresenter
 import kotlinx.android.synthetic.main.activity_auth.*
@@ -29,12 +31,16 @@ class AuthActivity : AppCompatActivity() ,AuthContract.View, AdapterView.OnItemS
     var strJenkel :String?=null
     var strLevel :String?=null
     var progressDialog : ProgressDialog? =null
+    lateinit var session :SessionManager
+
     lateinit var dialog : AlertDialog
     lateinit var presenter : AuthPresenter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.imastudio.mvpapp.R.layout.activity_auth)
         progressDialog = ProgressDialog(this)
+        session = SessionManager(this)
+
         initPresenter()
         btnRegister.onClick {
             register()
@@ -160,7 +166,9 @@ class AuthActivity : AppCompatActivity() ,AuthContract.View, AdapterView.OnItemS
         toast("gagal:"+toString)
     }
 
-    override fun pindahHalaman() {
+    override fun pindahHalaman(dataLogin: User?) {
+        session.createLoginSession(dataLogin?.username)
+        session.iduser= dataLogin?.idUser.toString()
         startActivity<MainActivity>()
     }
 

@@ -1,6 +1,7 @@
 package com.imastudio.mvpapp.presenter
 
 import com.imastudio.mvpapp.base.BaseView
+import com.imastudio.mvpapp.model.User
 
 interface AuthContract {
     interface Presenter{
@@ -26,7 +27,7 @@ interface AuthContract {
         fun hideLoading()
         fun hideDialog()
         fun showError(toString: String)
-        fun pindahHalaman()
+        fun pindahHalaman(dataLogin: User?)
         fun showMsg(msg: String?)
     }
 }

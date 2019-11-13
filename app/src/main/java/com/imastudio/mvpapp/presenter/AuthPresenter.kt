@@ -84,10 +84,12 @@ BasePresenter<AuthContract.View>,AuthContract.Presenter{
                     if (response.isSuccessful) {
                         var result = response.body()?.result
                         var msg = response.body()?.msg
+                        var dataLogin = response.body()?.user
+
                         if (result.equals("1")) {
                             authView?.showMsg(msg)
                             authView?.hideDialog()
-                            authView?.pindahHalaman()
+                            authView?.pindahHalaman(dataLogin)
 
                         } else {
                             authView?.showMsg(msg)
