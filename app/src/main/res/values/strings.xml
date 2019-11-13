@@ -13,6 +13,11 @@
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
+    <string-array name="jenkel">
+        <item>Laki - laki</item>
+        <item>Perempuan</item>
+
+    </string-array>
     <string name="fragment_login_password_hint">inputkan password anda</string>
     <string name="fragment_login_passfiword_hintcon">inputkan confirm password anda</string>
 </resources>

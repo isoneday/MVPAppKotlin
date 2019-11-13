@@ -46,6 +46,7 @@
                 android:id="@+id/spinjenkel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
                 android:spinnerMode="dropdown" />
 
             <EditText
@@ -54,20 +55,32 @@
                 android:layout_height="wrap_content"
                 android:hint="username" />
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:passwordToggleEnabled="true">
 
-                <EditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edtpassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/fragment_login_password_hint"
                     android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                <EditText
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:passwordToggleEnabled="true"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edtpasswordconfirm"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/fragment_login_passfiword_hintcon"
                     android:inputType="textPassword"/>
+            </com.google.android.material.textfield.TextInputLayout>
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

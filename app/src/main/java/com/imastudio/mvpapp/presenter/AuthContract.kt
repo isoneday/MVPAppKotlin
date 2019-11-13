@@ -14,7 +14,11 @@ interface AuthContract {
             usia: String,
             strLevel: String?
         )
-        fun prosesLogin()
+        fun prosesLogin(
+            username: String,
+            password: String,
+            strLevel: String?
+        )
     }
 
     interface View:BaseView{

@@ -8,19 +8,24 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.imastudio.mvpapp.MainActivity
 import com.imastudio.mvpapp.R
 import com.imastudio.mvpapp.presenter.AuthContract
 import com.imastudio.mvpapp.presenter.AuthPresenter
 import kotlinx.android.synthetic.main.activity_auth.*
+import kotlinx.android.synthetic.main.layout_login.view.*
 import kotlinx.android.synthetic.main.layout_register.view.*
+import kotlinx.android.synthetic.main.layout_register.view.regAdmin
+import kotlinx.android.synthetic.main.layout_register.view.regUserbiasa
 import org.jetbrains.anko.sdk27.coroutines.onClick
-import org.jetbrains.anko.sdk27.coroutines.onItemSelectedListener
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
 
-class AuthActivity : AppCompatActivity() ,AuthContract.View{
+class AuthActivity : AppCompatActivity() ,AuthContract.View, AdapterView.OnItemSelectedListener {
 
-    var dataJenkel = arrayOf("Laki - laki", "perempuan")
+
+//    var dataJenkel = arrayOf("Laki - laki", "perempuan")
     var strJenkel :String?=null
     var strLevel :String?=null
     var progressDialog : ProgressDialog? =null
@@ -44,22 +49,49 @@ class AuthActivity : AppCompatActivity() ,AuthContract.View{
     }
 
     private fun login() {
+        var alertRegister = AlertDialog.Builder(this)
+        alertRegister.setTitle("login")
+        alertRegister.setMessage("Silahkan login data anda")
+        var v = layoutInflater.inflate(R.layout.layout_login, null)
+        alertRegister.setView(v)
+        alertRegister.setPositiveButton("login",null)
+        alertRegister.setNegativeButton("Cancel",null)
+        dialog = alertRegister.create()
+        dialog.show()
 
+        getLevel(v)
+        v.regAdmin.onClick {
+            strLevel ="admin"
+        }
+        v.regUserbiasa.onClick {
+            strLevel ="user biasa"
+        }
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).onClick {
+            var username  =v.logUsername.text.toString()
+            var password =v.logPass.text.toString()
+
+            //cek kosong atau tidak
+            if (TextUtils.isEmpty(username)) v.logUsername.error="username tidak boleh kosong"
+            else if (TextUtils.isEmpty(password)) v.logPass.error="name tidak boleh kosong"
+            else presenter.prosesLogin(username,password,strLevel.toString())
+        }
     }
 
     private fun register() {
+        var v = layoutInflater.inflate(R.layout.layout_register, null)
 
         var alertRegister = AlertDialog.Builder(this)
         alertRegister.setTitle("register")
         alertRegister.setMessage("Silahkan register data anda")
-        var v = layoutInflater.inflate(R.layout.layout_register, null)
+
         alertRegister.setView(v)
         alertRegister.setPositiveButton("Register",null)
         alertRegister.setNegativeButton("Cancel",null)
          dialog = alertRegister.create()
         dialog.show()
-        getJenkel(v)
+        strJenkel = getJenkel(v)
         getLevel(v)
+
         v.regAdmin.onClick {
             strLevel ="admin"
         }
@@ -83,7 +115,8 @@ class AuthActivity : AppCompatActivity() ,AuthContract.View{
             else if (TextUtils.isEmpty(alamat)) v.edtalamat.error="alamat tidak boleh kosong"
             else if (TextUtils.isEmpty(password)) v.edtpassword.error="password tidak boleh kosong"
             else if (!password.equals(conPass)) v.edtpasswordconfirm.error="confirm password tidak sama"
-            else presenter.prosesRegister(email,name,alamat,nohp,password,strJenkel,usia,strLevel)
+            else presenter.prosesRegister(email,name,alamat,nohp,password,
+                strJenkel.toString(),usia,strLevel)
         }
 
     }
@@ -93,22 +126,20 @@ class AuthActivity : AppCompatActivity() ,AuthContract.View{
         else strLevel ="user biasa"
     }
 
-    private fun getJenkel(v: View) {
-        var adapter = ArrayAdapter(this,
-            android.R.layout.simple_spinner_item,dataJenkel)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        v.spinjenkel.adapter =adapter
-        v.spinjenkel.onItemSelectedListener {
-            object : AdapterView.OnItemSelectedListener{
-                override fun onNothingSelected(p0: AdapterView<*>?) {
-                }
+    private fun getJenkel(v: View): String? {
 
-                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                strJenkel = dataJenkel[p2]
-                }
-
-            }
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.jenkel,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            v.spinjenkel.adapter = adapter
+            v.spinjenkel.onItemSelectedListener = this
         }
+        return strJenkel
     }
 
     override fun showLoading() {
@@ -126,10 +157,11 @@ class AuthActivity : AppCompatActivity() ,AuthContract.View{
     }
 
     override fun showError(toString: String) {
-        toast("gagal:")
+        toast("gagal:"+toString)
     }
 
     override fun pindahHalaman() {
+        startActivity<MainActivity>()
     }
 
     override fun showMsg(msg: String?) {
@@ -153,5 +185,11 @@ class AuthActivity : AppCompatActivity() ,AuthContract.View{
         super.onDestroy()
         onDettachView()
     }
+    override fun onNothingSelected(p0: AdapterView<*>?) {
+        }
 
+    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+
+        strJenkel= p0?.getItemAtPosition(p2).toString()
+      }
 }

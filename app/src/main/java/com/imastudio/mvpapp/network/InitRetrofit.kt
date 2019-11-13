@@ -1,8 +1,7 @@
-package com.imastudio.customerapp.network
+package com.imastudio.mvpapp.network
 
 import com.google.gson.GsonBuilder
 import com.imastudio.mvpapp.helper.Helper.Companion.BASE_URL
-import com.imastudio.mvpapp.network.RestApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -26,8 +25,6 @@ object InitRetrofit {
         .build()
 
     fun getInstance(): RestApi = retrofit.create(RestApi::class.java)
-
-
 
 
 }
